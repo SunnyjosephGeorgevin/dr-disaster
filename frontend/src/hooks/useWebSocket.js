@@ -1,17 +1,30 @@
 import { useEffect, useRef, useState } from 'react'
 
-const WS_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:8000/ws/stream'
+const WS_URL =
+  import.meta.env.VITE_WS_URL ||
+  'ws://localhost:8000/ws/stream'
+
 const RECONNECT_DELAY_MS = 2000
 
 /**
- * Subscribes to the FastAPI /ws/stream endpoint and keeps the latest
- * dashboard state in React state. Reconnects automatically if the socket
- * drops — the connection to the backend is independent of the drone's
- * own connectivity state shown in the UI.
+ * Connects the dashboard to the FastAPI
+ * WebSocket state stream.
+ *
+ * Local:
+ *   ws://localhost:8000/ws/stream
+ *
+ * Render:
+ *   wss://dr-disaster.onrender.com/ws/stream
+ *
+ * The dashboard WebSocket connection is
+ * independent of the drone's own connectivity
+ * state displayed in the UI.
  */
 export function useWebSocket() {
   const [state, setState] = useState(null)
-  const [socketConnected, setSocketConnected] = useState(false)
+  const [socketConnected, setSocketConnected] =
+    useState(false)
+
   const socketRef = useRef(null)
   const timerRef = useRef(null)
 
@@ -19,28 +32,50 @@ export function useWebSocket() {
     let cancelled = false
 
     function connect() {
+      if (cancelled) return
+
       const ws = new WebSocket(WS_URL)
+
       socketRef.current = ws
 
       ws.onopen = () => {
         if (cancelled) return
+
         setSocketConnected(true)
       }
 
       ws.onmessage = (event) => {
         if (cancelled) return
+
         try {
-          const data = JSON.parse(event.data)
-          if (data.type === 'state_update') setState(data)
+          const data = JSON.parse(
+            event.data
+          )
+
+          if (
+            data.type ===
+            'state_update'
+          ) {
+            setState(data)
+          }
         } catch (err) {
-          console.error('Malformed state_update payload', err)
+          console.error(
+            'Malformed state_update payload',
+            err
+          )
         }
       }
 
       ws.onclose = () => {
         if (cancelled) return
+
         setSocketConnected(false)
-        timerRef.current = setTimeout(connect, RECONNECT_DELAY_MS)
+
+        timerRef.current =
+          setTimeout(
+            connect,
+            RECONNECT_DELAY_MS
+          )
       }
 
       ws.onerror = () => {
@@ -52,10 +87,17 @@ export function useWebSocket() {
 
     return () => {
       cancelled = true
-      clearTimeout(timerRef.current)
+
+      clearTimeout(
+        timerRef.current
+      )
+
       socketRef.current?.close()
     }
   }, [])
 
-  return { state, socketConnected }
+  return {
+    state,
+    socketConnected,
+  }
 }
