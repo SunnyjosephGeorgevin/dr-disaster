@@ -357,19 +357,11 @@ async def get_state():
 # Root
 # ---------------------------------------------------------------------------
 
-@app.get("/")
+@app.api_route("/", methods=["GET", "HEAD"])
 async def root():
-
     return {
-        "service":
-            "sector-7-dashboard-api",
-
-        "mode":
-            "AUTONOMOUS DRONE DEMO",
-
-        "ws":
-            "/ws/stream",
-
-        "docs":
-            "/docs",
+        "service": "sector-7-dashboard-api",
+        "mode": "AUTONOMOUS DRONE DEMO",
+        "ws": "/ws/stream",
+        "docs": "/docs",
     }
