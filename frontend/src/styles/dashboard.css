@@ -1,0 +1,1043 @@
+:root {
+  --bg: #0A0D10;
+  --panel: #12171C;
+  --panel-alt: #171E24;
+  --border: #2B333B;
+  --border-soft: #1E262D;
+  --text: #E6EAEE;
+  --text-dim: #8A96A3;
+  --text-faint: #545F6B;
+
+  --critical: #E4572E;
+  --elevated: #D9A441;
+  --low: #3FA796;
+
+  --hazard: #C8383A;
+  --hazard-fill: #3A1416;
+  --route: #F2C078;
+  --drone: #7C93AC;
+
+  --ok: #3FA796;
+  --warn: #D9A441;
+  --danger: #E4572E;
+
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* ---------- Status bar ---------- */
+
+.statusbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 22px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.statusbar .title-block {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.statusbar h1 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.sector-tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-faint);
+  letter-spacing: 0.08em;
+  border: 1px solid var(--border);
+  padding: 2px 7px;
+}
+
+.status-cluster {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.mission-badge {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  background: var(--panel-alt);
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+.mission-badge.active {
+  color: #BFE3DB;
+  border-color: #2C5C53;
+}
+
+.mission-badge.degraded {
+  color: #EAD3A0;
+  border-color: #5C4A22;
+}
+
+.badge {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.03em;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  background: var(--panel-alt);
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.badge .dot {
+  width: 7px;
+  height: 7px;
+  background: var(--text-faint);
+  flex-shrink: 0;
+}
+
+.badge.ok {
+  color: #BFE3DB;
+  border-color: #2C5C53;
+}
+
+.badge.ok .dot {
+  background: var(--ok);
+}
+
+.badge.warn {
+  color: #EAD3A0;
+  border-color: #5C4A22;
+}
+
+.badge.warn .dot {
+  background: var(--warn);
+}
+
+.badge.danger {
+  color: #F2BFAE;
+  border-color: #6B2C1B;
+}
+
+.badge.danger .dot {
+  background: var(--danger);
+}
+
+/* ---------- Degraded banner ---------- */
+
+.banner-stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.banner {
+  padding: 8px 22px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid var(--border);
+  background: #1D1710;
+  color: #EAD3A0;
+  border-bottom-color: #5C4A22;
+}
+
+/* ---------- Layout ---------- */
+
+.main {
+  display: flex;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+.map-panel {
+  flex: 0 0 70%;
+  max-width: 70%;
+  padding: 18px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+.list-panel {
+  flex: 0 0 30%;
+  max-width: 30%;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  min-height: 0;
+}
+
+.map-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.map-header .label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.map-header .coord-readout {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+.map-frame {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  flex: 1;
+  min-height: 420px;
+}
+
+.map-frame .leaflet-container {
+  width: 100%;
+  height: 100%;
+  background: var(--bg);
+}
+
+/* ---------- Leaflet ---------- */
+
+.leaflet-control-zoom a {
+  background: var(--panel-alt) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(10, 13, 16, 0.75) !important;
+  color: var(--text-faint) !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--text-dim) !important;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding: 10px 4px 2px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.legend .item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+/* ---------- Route metadata ---------- */
+
+.route-meta {
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 20px;
+}
+
+.route-meta .rm-item .k {
+  color: var(--text-faint);
+  letter-spacing: 0.05em;
+}
+
+.route-meta .rm-item .v {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.route-meta .placeholder {
+  color: var(--text-faint);
+}
+
+.route-meta button {
+  margin-left: auto;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 6px 12px;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+}
+
+.route-meta button:hover {
+  border-color: var(--text-dim);
+  color: var(--text);
+}
+
+.route-meta button:focus-visible {
+  outline: 2px solid var(--route);
+  outline-offset: 2px;
+}
+
+/* ---------- Priority list ---------- */
+
+.list-header {
+  padding: 16px 18px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.list-header .label {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+
+.list-header .count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-top: 2px;
+}
+
+.victim-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.victim-item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border-soft);
+  padding: 13px 18px;
+  cursor: pointer;
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+.victim-item:hover {
+  background: var(--panel-alt);
+}
+
+.victim-item:focus-visible {
+  outline: 2px solid var(--route);
+  outline-offset: -2px;
+}
+
+.victim-item.selected {
+  background: var(--panel-alt);
+  border-left: 3px solid var(--route);
+  padding-left: 15px;
+}
+
+.vi-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.vi-id {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.priority-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 3px 7px;
+  text-transform: uppercase;
+}
+
+.priority-tag.critical {
+  background: var(--critical);
+  color: #1A0A05;
+  font-weight: 600;
+  border: 1px solid var(--critical);
+}
+
+.priority-tag.elevated {
+  background: transparent;
+  color: var(--elevated);
+  border: 1.5px solid var(--elevated);
+  font-weight: 600;
+}
+
+.priority-tag.low {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px dashed var(--border);
+  font-weight: 400;
+}
+
+.vi-bottom {
+  display: flex;
+  gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+}
+
+.vi-bottom .k {
+  color: var(--text-faint);
+}
+
+.vi-error {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--critical);
+  margin-top: 6px;
+}
+
+/* ---------- Demo controls ---------- */
+
+.demo-panel {
+  border-top: 1px solid var(--border);
+  padding: 14px 18px 18px;
+  background: var(--panel);
+}
+
+.demo-panel .label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  margin-bottom: 9px;
+}
+
+.demo-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.demo-buttons button {
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.demo-buttons button:hover {
+  color: var(--text);
+  border-color: var(--text-dim);
+}
+
+.demo-buttons button:focus-visible {
+  outline: 2px solid var(--route);
+  outline-offset: 1px;
+}
+
+.demo-buttons button.active {
+  color: var(--bg);
+  background: var(--route);
+  border-color: var(--route);
+  font-weight: 600;
+}
+
+.dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 34px);
+  grid-template-rows: repeat(3, 34px);
+  gap: 4px;
+}
+
+.dpad button {
+  background: var(--panel-alt);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dpad button:hover {
+  color: var(--text);
+  border-color: var(--text-dim);
+}
+
+.dpad button:focus-visible {
+  outline: 2px solid var(--route);
+  outline-offset: 1px;
+}
+
+.dpad .dp-center {
+  background: none;
+  border: none;
+}
+
+.dpad-hint {
+  margin-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-faint);
+  max-width: 220px;
+  line-height: 1.5;
+}
+
+/* ---------- Marker labels ---------- */
+
+.marker-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  color: var(--text-faint);
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* ---------- Autonomous drone ---------- */
+
+.drone-marker-wrapper {
+  position: relative;
+  width: 190px;
+  height: 52px;
+  pointer-events: none;
+}
+
+.drone-icon {
+  position: absolute;
+  left: 0;
+  top: 6px;
+  transform-origin: center;
+  filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8));
+  pointer-events: none;
+}
+
+.drone-map-label {
+  position: absolute;
+  left: 43px;
+  top: 3px;
+  min-width: 125px;
+  padding: 5px 8px;
+  background: rgba(18, 23, 28, 0.94);
+  border-left: 2px solid var(--drone);
+  font-family: var(--font-mono);
+  line-height: 1.25;
+}
+
+.drone-map-label strong {
+  display: block;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.drone-map-label span {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-dim);
+  font-size: 9px;
+  letter-spacing: 0.05em;
+}
+
+.drone-marker-wrapper.stale .drone-map-label {
+  border-left-color: var(--warn);
+}
+
+.drone-marker-wrapper.stale .drone-map-label span {
+  color: var(--warn);
+}
+
+/* ---------- Drone popup ---------- */
+
+.drone-popup {
+  min-width: 220px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #12171C;
+  line-height: 1.5;
+}
+
+.drone-popup-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+  color: #12171C;
+}
+
+.drone-popup-status {
+  color: #257565;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.drone-popup-divider {
+  border-top: 1px solid #D0D5DA;
+  margin: 8px 0;
+}
+
+.drone-popup-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 3px 0;
+}
+
+.drone-popup-row span {
+  color: #68737E;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+}
+
+.drone-popup-row strong {
+  color: #12171C;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* ---------- Hazard popup ---------- */
+
+.hazard-popup {
+  min-width: 190px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #12171C;
+}
+
+.hazard-popup-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  color: #12171C;
+}
+
+.hazard-popup-type {
+  color: #B72F31;
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 2px;
+  margin-bottom: 7px;
+  letter-spacing: 0.06em;
+}
+
+.hazard-popup-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 3px 0;
+  border-top: 1px solid #E0E3E6;
+}
+
+.hazard-popup-row span {
+  color: #68737E;
+  font-size: 9px;
+}
+
+.hazard-popup-row strong {
+  color: #12171C;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* ---------- Base popup ---------- */
+
+.map-popup {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.5;
+  color: #12171C;
+}
+
+.map-popup strong {
+  display: block;
+  margin-bottom: 3px;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Autonomous status ---------- */
+
+.autonomous-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border);
+  background: var(--panel-alt);
+  padding: 9px 10px;
+}
+
+.autonomous-status > .status-indicator {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  background: var(--ok);
+}
+
+.autonomous-status strong {
+  display: block;
+  font-family: var(--font-mono);
+  color: var(--text);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.autonomous-status div > span {
+  display: block;
+  margin-top: 2px;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+}
+
+.detection-note {
+  margin-top: 10px;
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1.45;
+}
+
+/* ---------- Scrollbar ---------- */
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--panel);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+}
+/* =========================================================
+   AUTONOMOUS DRONE TELEMETRY PANEL
+   ========================================================= */
+
+.autonomous-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 11px;
+  border: 1px solid var(--border);
+  background: #10151A;
+}
+
+.autonomous-status > .status-indicator {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  border-radius: 50%;
+  background: var(--ok);
+  box-shadow: 0 0 0 3px rgba(63, 167, 150, 0.12);
+}
+
+.autonomous-status strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  color: var(--text);
+}
+
+.autonomous-status div > span {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.03em;
+  color: var(--text-dim);
+}
+
+/* ---------- Telemetry grid ---------- */
+
+.drone-telemetry {
+  margin-top: 8px;
+  border: 1px solid var(--border-soft);
+  background: #0E1216;
+}
+
+.telemetry-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 29px;
+  padding: 5px 9px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.telemetry-row:last-child {
+  border-bottom: none;
+}
+
+.telemetry-row span {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.07em;
+  color: var(--text-faint);
+}
+
+.telemetry-row strong {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  text-align: right;
+}
+
+/* ---------- Important telemetry values ---------- */
+
+.telemetry-row:nth-child(2) strong {
+  color: #BFD0DF;
+}
+
+.telemetry-row:nth-child(3) strong {
+  color: #BFD0DF;
+}
+
+.telemetry-row:nth-child(4) strong {
+  color: var(--route);
+}
+
+.telemetry-row:nth-child(5) strong {
+  color: var(--text-dim);
+}
+
+/* ---------- Hazard detection section ---------- */
+
+.detection-note {
+  border: 1px solid var(--border-soft);
+  background: #0E1216;
+  padding: 9px 10px;
+  margin-top: 0;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1.5;
+}
+
+.detection-note::before {
+  content: 'STATUS  ';
+  color: var(--ok);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Sensor fault button ---------- */
+
+.demo-buttons button {
+  min-height: 30px;
+}
+
+.demo-buttons button.active {
+  color: #17110A;
+  background: var(--route);
+  border-color: var(--route);
+}
+
+/* ---------- Stale drone telemetry ---------- */
+
+.drone-marker-wrapper.stale {
+  opacity: 0.42;
+}
+
+.autonomous-status:has(+ .drone-telemetry) {
+  border-left: 2px solid var(--ok);
+}
+
+/* ---------- Drone map label ---------- */
+
+.drone-map-label {
+  position: absolute;
+  left: 43px;
+  top: 3px;
+  min-width: 130px;
+  padding: 5px 8px;
+  background: rgba(18, 23, 28, 0.96);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--drone);
+  font-family: var(--font-mono);
+  line-height: 1.25;
+}
+
+.drone-map-label strong {
+  display: block;
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.drone-map-label span {
+  display: block;
+  margin-top: 2px;
+  color: var(--drone);
+  font-size: 9px;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Stale map label ---------- */
+
+.drone-marker-wrapper.stale .drone-map-label {
+  border-left-color: var(--warn);
+}
+
+.drone-marker-wrapper.stale .drone-map-label span {
+  color: var(--warn);
+}
+
+/* ---------- Drone popup ---------- */
+
+.drone-popup {
+  min-width: 230px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #12171C;
+  line-height: 1.5;
+}
+
+.drone-popup-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+
+.drone-popup-status {
+  color: #287866;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.drone-popup-divider {
+  border-top: 1px solid #D0D5DA;
+  margin: 8px 0;
+}
+
+.drone-popup-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 18px;
+  padding: 4px 0;
+}
+
+.drone-popup-row span {
+  color: #68737E;
+  font-size: 9px;
+  letter-spacing: 0.05em;
+}
+
+.drone-popup-row strong {
+  color: #12171C;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* ---------- Hazard popup ---------- */
+
+.hazard-popup {
+  min-width: 200px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #12171C;
+}
+
+.hazard-popup-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+}
+
+.hazard-popup-type {
+  color: #B72F31;
+  font-size: 10px;
+  font-weight: 600;
+  margin-top: 2px;
+  margin-bottom: 7px;
+  letter-spacing: 0.06em;
+}
+
+.hazard-popup-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 4px 0;
+  border-top: 1px solid #E0E3E6;
+}
+
+.hazard-popup-row span {
+  color: #68737E;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+
+.hazard-popup-row strong {
+  color: #12171C;
+  font-weight: 600;
+  text-align: right;
+}
