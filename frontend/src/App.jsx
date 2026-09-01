@@ -173,6 +173,14 @@ export default function App() {
           <div className="legend">
 
             <span className="item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" style={{ verticalAlign: 'middle', marginRight: 3 }}>
+                <rect x="2" y="2" width="20" height="20" rx="4" fill="#0E1318" stroke="#3FA796" strokeWidth="2.4"/>
+                <text x="12" y="15.5" textAnchor="middle" fill="#3FA796" fontFamily="IBM Plex Mono, monospace" fontSize="9.5" fontWeight="700">HQ</text>
+              </svg>
+              Rescue Base (HQ)
+            </span>
+
+            <span className="item">
               ▲ Victim — Critical
             </span>
 

@@ -68,14 +68,42 @@ function victimIcon(priority, selected) {
 }
 
 const BASE_ICON = L.divIcon({
-  html: `<svg width="24" height="24" viewBox="0 0 24 24">
-    <rect x="4" y="4" width="16" height="16" fill="#12171C" stroke="#E6EAEE" stroke-width="1.8"/>
-    <line x1="1" y1="12" x2="23" y2="12" stroke="#E6EAEE" stroke-width="1"/>
-    <line x1="12" y1="1" x2="12" y2="23" stroke="#E6EAEE" stroke-width="1"/>
-  </svg>`,
+  html: `
+    <div class="base-marker-wrapper">
+      <div class="base-icon">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer tactical container with rounded corners and high-contrast glowing border -->
+          <rect x="2" y="2" width="32" height="32" rx="6" fill="#0E1318" stroke="#3FA796" stroke-width="2.2"/>
+          
+          <!-- Tactical corner brackets -->
+          <path d="M6 3.5 L3.5 3.5 L3.5 6" stroke="#E6EAEE" stroke-width="1" stroke-linecap="round" fill="none"/>
+          <path d="M30 3.5 L32.5 3.5 L32.5 6" stroke="#E6EAEE" stroke-width="1" stroke-linecap="round" fill="none"/>
+          <path d="M6 32.5 L3.5 32.5 L3.5 30" stroke="#E6EAEE" stroke-width="1" stroke-linecap="round" fill="none"/>
+          <path d="M30 32.5 L32.5 32.5 L32.5 30" stroke="#E6EAEE" stroke-width="1" stroke-linecap="round" fill="none"/>
+          
+          <!-- Radio mast / antenna signal arcs -->
+          <path d="M12 8.5 C14 6.5, 22 6.5, 24 8.5" stroke="#3FA796" stroke-width="1.3" stroke-linecap="round" fill="none"/>
+          <path d="M14.5 10.5 C16 9.5, 20 9.5, 21.5 10.5" stroke="#3FA796" stroke-width="1.1" stroke-linecap="round" fill="none"/>
+          <line x1="18" y1="8" x2="18" y2="13" stroke="#3FA796" stroke-width="1.8"/>
+          <circle cx="18" cy="7.5" r="1.5" fill="#3FA796"/>
+
+          <!-- Command Headquarters structure -->
+          <path d="M8 17 L18 11.5 L28 17 L28 28.5 L8 28.5 Z" fill="#182026" stroke="#E6EAEE" stroke-width="1.6" stroke-linejoin="round"/>
+          
+          <!-- HQ Tactical Label -->
+          <text x="18" y="24.5" text-anchor="middle" fill="#3FA796" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="700" letter-spacing="0.5">HQ</text>
+        </svg>
+      </div>
+
+      <div class="base-map-label">
+        <strong>RESCUE BASE</strong>
+        <span>COMMAND HQ</span>
+      </div>
+    </div>
+  `,
   className: '',
-  iconSize: [24, 24],
-  iconAnchor: [12, 12],
+  iconSize: [190, 52],
+  iconAnchor: [18, 22],
 })
 
 const HAZARD_ICON = L.divIcon({
@@ -198,15 +226,38 @@ export default function MapView({
           victims={victims}
         />
 
+        {/* Base perimeter / comms radius */}
+        <Circle
+          center={[base.lat, base.lon]}
+          radius={35}
+          pathOptions={{
+            color: '#3FA796',
+            weight: 1.5,
+            dashArray: '4 4',
+            fillOpacity: 0.05,
+            fillColor: '#3FA796',
+            opacity: 0.6,
+          }}
+        />
+
         {/* Base / reference point */}
         <Marker
           position={[base.lat, base.lon]}
           icon={BASE_ICON}
         >
           <Popup>
-            <div className="map-popup">
-              <strong>RESCUE TEAM BASE</strong>
-              <div>Reference point for route calculations</div>
+            <div className="base-popup">
+              <div className="base-popup-title">RESCUE TEAM BASE</div>
+              <div className="base-popup-status">OPERATIONAL · COMMAND HQ</div>
+              <div className="base-popup-divider" />
+              <div className="base-popup-row">
+                <span>COORDINATES</span>
+                <strong>{base.lat.toFixed(5)}, {base.lon.toFixed(5)}</strong>
+              </div>
+              <div className="base-popup-row">
+                <span>ROLE</span>
+                <strong>Route Origin & Comms Relay</strong>
+              </div>
             </div>
           </Popup>
         </Marker>
