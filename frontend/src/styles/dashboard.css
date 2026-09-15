@@ -71,7 +71,7 @@ body {
 
 .statusbar h1 {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 700;
   letter-spacing: 0.06em;
   margin: 0;
@@ -80,11 +80,11 @@ body {
 
 .sector-tag {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-faint);
   letter-spacing: 0.08em;
   border: 1px solid var(--border);
-  padding: 2px 7px;
+  padding: 3px 8px;
 }
 
 .status-cluster {
@@ -96,8 +96,8 @@ body {
 
 .mission-badge {
   font-family: var(--font-mono);
-  font-size: 11.5px;
-  padding: 6px 10px;
+  font-size: 13px;
+  padding: 6px 12px;
   border: 1px solid var(--border);
   background: var(--panel-alt);
   color: var(--text-dim);
@@ -116,9 +116,9 @@ body {
 
 .badge {
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: 13px;
   letter-spacing: 0.03em;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border: 1px solid var(--border);
   background: var(--panel-alt);
   color: var(--text-dim);
@@ -129,8 +129,8 @@ body {
 }
 
 .badge .dot {
-  width: 7px;
-  height: 7px;
+  width: 8px;
+  height: 8px;
   background: var(--text-faint);
   flex-shrink: 0;
 }
@@ -170,9 +170,9 @@ body {
 }
 
 .banner {
-  padding: 8px 22px;
+  padding: 9px 22px;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.02em;
   border-bottom: 1px solid var(--border);
   background: #1D1710;
@@ -207,6 +207,7 @@ body {
   flex-direction: column;
   background: var(--panel);
   min-height: 0;
+  overflow: hidden;
 }
 
 .map-header {
@@ -217,7 +218,7 @@ body {
 
 .map-header .label {
   font-family: var(--font-display);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--text-dim);
@@ -226,7 +227,7 @@ body {
 
 .map-header .coord-readout {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   color: var(--text-faint);
 }
 
@@ -267,7 +268,7 @@ body {
   gap: 18px;
   padding: 10px 4px 2px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12.5px;
   color: var(--text-dim);
 }
 
@@ -284,7 +285,7 @@ body {
   border: 1px solid var(--border);
   padding: 12px 16px;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13.5px;
   color: var(--text-dim);
   display: flex;
   gap: 28px;
@@ -313,8 +314,8 @@ body {
   border: 1px solid var(--border);
   color: var(--text-dim);
   font-family: var(--font-mono);
-  font-size: 11px;
-  padding: 6px 12px;
+  font-size: 12px;
+  padding: 6px 14px;
   cursor: pointer;
   letter-spacing: 0.04em;
 }
@@ -338,7 +339,7 @@ body {
 
 .list-header .label {
   font-family: var(--font-display);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: var(--text-dim);
@@ -347,7 +348,7 @@ body {
 
 .list-header .count {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12.5px;
   color: var(--text-faint);
   margin-top: 2px;
 }
@@ -397,15 +398,15 @@ body {
 
 .vi-id {
   font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 14.5px;
+  font-weight: 600;
 }
 
 .priority-tag {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11.5px;
   letter-spacing: 0.08em;
-  padding: 3px 7px;
+  padding: 3px 8px;
   text-transform: uppercase;
 }
 
@@ -434,7 +435,7 @@ body {
   display: flex;
   gap: 16px;
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12.5px;
   color: var(--text-dim);
 }
 
@@ -444,7 +445,7 @@ body {
 
 .vi-error {
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 12px;
   color: var(--critical);
   margin-top: 6px;
 }
@@ -459,11 +460,12 @@ body {
 
 .demo-panel .label {
   font-family: var(--font-mono);
-  font-size: 10.5px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   color: var(--text-faint);
   text-transform: uppercase;
   margin-bottom: 9px;
+  font-weight: 600;
 }
 
 .demo-buttons {
@@ -477,8 +479,8 @@ body {
   border: 1px solid var(--border);
   color: var(--text-dim);
   font-family: var(--font-mono);
-  font-size: 11px;
-  padding: 6px 10px;
+  font-size: 12px;
+  padding: 7px 12px;
   cursor: pointer;
 }
 
@@ -879,15 +881,15 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 11px;
+  padding: 10px 12px;
   border: 1px solid var(--border);
   background: #10151A;
 }
 
 .autonomous-status > .status-indicator {
-  width: 8px;
-  height: 8px;
-  min-width: 8px;
+  width: 9px;
+  height: 9px;
+  min-width: 9px;
   border-radius: 50%;
   background: var(--ok);
   box-shadow: 0 0 0 3px rgba(63, 167, 150, 0.12);
@@ -896,7 +898,7 @@ body {
 .autonomous-status strong {
   display: block;
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.07em;
   color: var(--text);
@@ -906,7 +908,7 @@ body {
   display: block;
   margin-top: 3px;
   font-family: var(--font-mono);
-  font-size: 9.5px;
+  font-size: 11px;
   letter-spacing: 0.03em;
   color: var(--text-dim);
 }
@@ -924,8 +926,8 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  min-height: 29px;
-  padding: 5px 9px;
+  min-height: 32px;
+  padding: 6px 10px;
   border-bottom: 1px solid var(--border-soft);
 }
 
@@ -935,14 +937,14 @@ body {
 
 .telemetry-row span {
   font-family: var(--font-mono);
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.07em;
   color: var(--text-faint);
 }
 
 .telemetry-row strong {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 12.5px;
   font-weight: 500;
   letter-spacing: 0.03em;
   color: var(--text);
@@ -972,11 +974,11 @@ body {
 .detection-note {
   border: 1px solid var(--border-soft);
   background: #0E1216;
-  padding: 9px 10px;
+  padding: 9px 12px;
   margin-top: 0;
   color: var(--text-dim);
   font-family: var(--font-mono);
-  font-size: 9.5px;
+  font-size: 11px;
   line-height: 1.5;
 }
 
@@ -1141,4 +1143,417 @@ body {
   color: #12171C;
   font-weight: 600;
   text-align: right;
+}
+
+/* =========================================================
+   BOTTOM INFO ROW — Autonomous Drone + Mission Overview
+   ========================================================= */
+
+.bottom-info-row {
+  display: flex;
+  gap: 0;
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+  flex-shrink: 0;
+  max-height: 60%;
+  overflow: hidden;
+}
+
+/* Right column wrapper: stacks MissionOverview + DroneStatus */
+.bottom-right-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  border-left: 1px solid var(--border);
+}
+
+/* Left column: autonomous drone panel */
+.bottom-info-row .demo-panel {
+  flex: 0 0 42%;
+  border-top: none;
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+}
+
+/* Right column: mission overview panel */
+.mission-overview-panel {
+  flex-shrink: 0;
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── Header ── */
+.mo-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mo-title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ── 2×2 stats grid ── */
+.mo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.mo-card {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #0E1216;
+  border: 1px solid var(--border-soft);
+  padding: 8px 10px;
+}
+
+.mo-card-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: #12181F;
+  border: 1px solid var(--border-soft);
+}
+
+.mo-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.mo-card-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+
+.mo-card-value {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  line-height: 1.1;
+}
+
+.mo-wp-done {
+  color: var(--ok);
+}
+
+.mo-wp-sep {
+  color: var(--text-faint);
+  font-weight: 400;
+}
+
+.mo-wp-total {
+  color: var(--text-dim);
+  font-size: 14.5px;
+}
+
+.mo-value-victims {
+  color: var(--elevated);
+}
+
+.mo-value-hazards {
+  color: var(--critical);
+}
+
+/* ── Bottom detail rows ── */
+.mo-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #0E1216;
+  border: 1px solid var(--border-soft);
+}
+
+.mo-detail-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.mo-detail-row:last-child {
+  border-bottom: none;
+}
+
+.mo-detail-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+
+.mo-detail-value {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+  text-align: right;
+}
+
+/* =========================================================
+   HAZARD LIST PANEL
+   ========================================================= */
+
+.hazard-list-panel {
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+  flex-shrink: 0;
+}
+
+/* ── Header ── */
+.hz-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 16px 8px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.hz-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  text-transform: uppercase;
+}
+
+.hz-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-faint);
+  letter-spacing: 0.04em;
+}
+
+/* ── Table rows ── */
+.hz-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.hz-row {
+  display: grid;
+  grid-template-columns: 80px 115px 90px 65px 1fr;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border-soft);
+  transition: background 0.12s ease;
+}
+
+.hz-row:last-child {
+  border-bottom: none;
+}
+
+.hz-row:hover {
+  background: var(--panel-alt);
+}
+
+/* ID */
+.hz-id {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--text);
+}
+
+/* Type + icon */
+.hz-type {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.hz-type-icon {
+  flex-shrink: 0;
+}
+
+/* Distance */
+.hz-distance {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-dim);
+  text-align: right;
+}
+
+/* Time */
+.hz-time {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-faint);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ── Severity badges ── */
+.hz-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 8px;
+  border-radius: 2px;
+  min-width: 72px;
+  text-align: center;
+}
+
+.hz-badge-critical {
+  background: transparent;
+  color: #E4572E;
+  border: 1.5px solid #E4572E;
+}
+
+.hz-badge-high {
+  background: #2B1A0D;
+  color: #D9A441;
+  border: 1.5px solid #8A5A18;
+}
+
+.hz-badge-medium {
+  background: #182B18;
+  color: #5DBB5D;
+  border: 1.5px solid #2F6B2F;
+}
+
+.hz-badge-low {
+  background: transparent;
+  color: var(--text-faint);
+  border: 1px dashed var(--border);
+}
+
+/* =========================================================
+   DRONE STATUS PANEL
+   ========================================================= */
+
+.drone-status-panel {
+  flex-shrink: 0;
+  border-top: 1px solid var(--border-soft);
+  background: var(--panel-alt);
+  padding: 12px 16px 14px;
+}
+
+/* ── Header ── */
+.ds-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.ds-title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Drone state badge */
+.ds-state-badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 4px 10px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.ds-state-search {
+  color: #3FA796;
+  border: 1.5px solid #3FA796;
+  background: rgba(63, 167, 150, 0.08);
+}
+
+.ds-state-approach {
+  color: #D9A441;
+  border: 1.5px solid #D9A441;
+  background: rgba(217, 164, 65, 0.10);
+}
+
+.ds-state-avoid {
+  color: #E4572E;
+  border: 1.5px solid #E4572E;
+  background: rgba(228, 87, 46, 0.10);
+}
+
+/* ── Metrics grid ── */
+.ds-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #0E1216;
+  border: 1px solid var(--border-soft);
+}
+
+.ds-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.ds-row:last-child {
+  border-bottom: none;
+}
+
+.ds-row-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ds-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+
+.ds-value {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  text-align: right;
+  letter-spacing: 0.03em;
+}
+
+.ds-value-sm {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-dim);
 }

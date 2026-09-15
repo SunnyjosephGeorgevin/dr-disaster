@@ -8,6 +8,9 @@ import ConnectivityBadge from './components/ConnectivityBadge.jsx'
 import MissionStatus from './components/MissionStatus.jsx'
 import DegradedBanner from './components/DegradedBanner.jsx'
 import DemoControls from './components/DemoControls.jsx'
+import MissionOverview from './components/MissionOverview.jsx'
+import HazardList from './components/HazardList.jsx'
+import DroneStatus from './components/DroneStatus.jsx'
 
 const THERMAL_FAULT_MSG =
   'Thermal sensor unavailable – RGB-only perception active.'
@@ -236,13 +239,37 @@ export default function App() {
             routeError={routeError}
           />
 
-          <DemoControls
-            currentLink={state?.connectivity?.link}
-            hasThermalFault={hasThermalFault}
-            onThermalFaultChange={() => {}}
-            drone={state?.drone}
-            distanceFromBase={droneDistanceFromBase}
-          />
+          {/* ================================================
+              HAZARD LIST
+              ================================================ */}
+          <HazardList hazards={state?.hazards || []} />
+
+          {/* ================================================
+              BOTTOM ROW — Autonomous Drone | Mission Overview
+              ================================================ */}
+          <div className="bottom-info-row">
+
+            <DemoControls
+              currentLink={state?.connectivity?.link}
+              hasThermalFault={hasThermalFault}
+              onThermalFaultChange={() => {}}
+              drone={state?.drone}
+              distanceFromBase={droneDistanceFromBase}
+            />
+
+            {/* Right column: Mission Overview stacked above Drone Status */}
+            <div className="bottom-right-col">
+
+              <MissionOverview
+                victims={state?.victims || []}
+                hazards={state?.hazards || []}
+              />
+
+              <DroneStatus drone={state?.drone} />
+
+            </div>
+
+          </div>
 
         </div>
 
